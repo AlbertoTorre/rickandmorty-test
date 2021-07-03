@@ -4,7 +4,7 @@
       <p class="panel-heading">Rick And Morty</p>
       <div class="panel-block">
         <p class="control has-icons-left">
-          <input class="input" type="text" placeholder="Search" 
+          <input class="input" type="text" placeholder="Buscar..." 
                   v-model="filter.name"
                   @keyup.13="loadFilter">
           <span class="icon is-left">
@@ -40,7 +40,7 @@
         </div>
       </div>
       <characters :characterList="characterList" />
-      <article class="message is-warning" v-show="characterList.length">
+      <article class="message is-warning" v-show="!characterList.length">
         <div class="message-body">
             Cargando datos, espere un momento...
         </div>
@@ -125,7 +125,6 @@ export default class Home extends Vue {
   }
 
   loadFilter (): void {
-    console.log("text")
     set<string>("data", JSON.stringify(this.filter));
     return this.response(RmCharacterDataService.findByNameOrStatusOrGender(this.filter));
   }
@@ -138,13 +137,11 @@ export default class Home extends Vue {
   }
 
   statusChange (status: string): void {
-    console.log('status');
     this.filter.status = status;
     this.loadFilter()
   }
 
   genderChange (gender: string): void {
-    console.log('gender');
     this.filter.gender = gender;
     this.loadFilter()
   }

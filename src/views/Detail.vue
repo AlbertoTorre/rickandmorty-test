@@ -1,11 +1,8 @@
 <template>
   <div class="columns is-mobile is-centered">
-    <nav class="panel column is-half p-0 pb-6" >
+    <nav class="panel column is-half p-0" >
       <p class="panel-heading">Rick And Morty</p>
-      <div class="panel-block">
-        <character :characterData="characterData" v-if="characterData" />
-      </div>
-      
+      <character :characterData="characterData" v-if="characterData" />
       <article class="message is-warning" v-show="characterData && characterData.length">
         <div class="message-body">
             Cargando datos, espere un momento...
